@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Se veloce appare una capra</title>
+  </head>
+  <style>
+    body {
+      background-image: linear-gradient(#f6fa07, #a36e0c);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    #box {
+      width: 750px;
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(to bottom right, #26bc21, #8ee6c1);
+      border-radius: 50px;
+    }
+    button {
+      width: 100px;
+      height: 50px;
+      border: 0px;
+      border-radius: 50px;
+      background-color: #2afb00;
+    }
+    button:hover {
+      background-color: #03ff4f;
+    }
+  </style>
+  <body>
+    <div id="box">
+      <button onclick="genera()"><b>GENERA</b></button>
+      <img src="" id="immagine" />
+      <p id="out">
+        Se premi il pulsante più volte "<i>GENERA</i>" velocemente,farai
+        apparire una capra,altrimenti...
+      </p>
+    </div>
+    <script>
+      let tempi = new Array();
+      let orarioApertura = Date.now();
+      tempi.push(orarioApertura);
+ 
+      function setImmagine() {
+        document.getElementById("immagine").style.width = "700px";
+        document.getElementById("immagine").style.height = "500px";
+      }
+ 
+      function genera() {
+        let nuovoClick = Date.now();
+        tempi.push(nuovoClick);
+        var tempo = (tempi[tempi.length - 1] - tempi[tempi.length - 2]) / 1000;
+ 
+        if (tempo < 2) {
+          setImmagine();
+          document.getElementById("out").innerHTML =
+            "Stai cliccando veloce,ti meriti una capra!";
+          document.getElementById("immagine").src =
+            "https://www.ruminantia.it/wp-content/uploads/2020/09/capra-bianco-primo-piano-PxHere.jpg";
+        } else {
+          setImmagine();
+          document.getElementById("out").innerHTML =
+            "Troppo lento,ti meriti una pecora!";
+          document.getElementById("immagine").src =
+            "https://upload.wikimedia.org/wikipedia/commons/1/1f/Schaf_bei_Woodhenge1.jpg";
+        }
+      }
+    </script>
+  </body>
+</html>
+
